@@ -1,0 +1,63 @@
+
+.userTable{
+    width: 60%;
+    margin: 50px auto;
+    background-color: white;
+    padding: 50px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.065);
+}
+
+.userTable table{
+    width: 100%;
+    margin-top: 30px;
+}
+.userTable .btn-info{
+    margin-right: 10px;
+}
+
+
+/* Bo tròn, đổ bóng, thêm hiệu ứng hover */
+.add-user-btn {
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Khoảng cách giữa icon và chữ */
+    transition: all 0.3s ease;
+}
+
+.add-user-btn:hover {
+    background-color: #0056b3;
+}
+
+/* CSS cho các nút hành động */
+.action-btn {
+    font-size: 18px;
+    padding: 8px;
+    margin: 0 5px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng hover */
+.action-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Màu sắc hover */
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-info:hover {
+    background-color: #17a2b8;
+}
+.add-user-btn {
+    display: inline-block;  /* Giữ nút trên cùng một dòng */
+    width: auto;            /* Để chiều rộng tự động theo nội dung */
+    padding: 8px 12px;      /* Giảm padding để thu nhỏ nút */
+    font-size: 14px;        /* Thu nhỏ chữ một chút nếu cần */
+    white-space: nowrap;    /* Ngăn chữ xuống dòng */
+}

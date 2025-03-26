@@ -1,0 +1,72 @@
+import express from 'express'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+import bodyParser from 'body-parser'
+
+const app = express()
+
+app.use(bodyParser.json())// dùng app để gửi dữ liệu --> htpp
+
+
+dotenv.config() // dùng để nạp biến môi trường vào mã nguồn 
+// process --> dotenv
+const PORT = process.env.PORT|| 7000
+const MONGOURL = process.env.MONGO_URL
+
+
+// giải thích sơ lại them thì thực hiện các hành động từng then() bắt lỗi bằng catch()
+mongoose.connect(MONGOURL).then(
+    ()=>{
+        console.log();
+        app.listen(PORT,()=>{
+            console.log(`Server is running ${PORT}`)
+        })
+
+    }
+).catch((error)=>{
+    console.log(error)
+})
+
+
+
+
+
+import mongoose from "mongoose";
+
+const userSchema = new mongoose.Schema({ // Schema nhằm tạo ra các dữ liệu ràng buột
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    }
+
+})
+
+export default mongoose.model("User", userSchema)//có nghĩa là mỗi lầ tạo biến mới là new User và trong User này buột phải tạo các trường định sẵn trong userSchema
+
+
+
+import User from '../model/userModel.js'
+
+
+export const create = async(req,res)=>{
+    try {
+        const newuser = new User(req.body);
+        const {email} =  newuser   // Lấy email từ user mới
+        const userExist = await User.findOne({email}) 
+        if(!userExist){
+            res.status(404).json({message: "Đã được dùng"})
+        }   
+       const saveData = await newuser.save()
+       res.status(200).json(saveData)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
